@@ -87,7 +87,7 @@ module.exports = {
         blockSeparator: 'var(--new-blockSeparator)',
         btnSimple: 'var(--new-btn-simple)',
         btnText: 'var(--new-btn-text)',
-        btnPrimary: 'var(--new-btn-primary)',
+        btnPrimary: 'rgb(from var(--new-btn-primary) r g b / <alpha-value>)',
         ai: 'var(--new-ai-btn)',
         boxHover: 'var(--new-box-hover)',
         newTableBorder: 'var(--new-table-border)',

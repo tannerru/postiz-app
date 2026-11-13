@@ -1,6 +1,8 @@
 'use client';
 
-export const Logo = () => {
+import { BrandIcon } from '@gitroom/frontend/components/brand/brand.logo';
+
+const UpstreamLogo = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -28,5 +30,15 @@ export const Logo = () => {
         fill="#131019"
       />
     </svg>
+  );
+};
+
+export const Logo = () => {
+  return (
+    <BrandIcon
+      size={44}
+      className="mt-[8px] min-w-[44px] min-h-[44px]"
+      fallback={<UpstreamLogo />}
+    />
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
+import { BrandLogo } from '@gitroom/frontend/components/brand/brand.logo';
 
-export const LogoTextComponent = () => {
+const UpstreamLogoText = () => {
   return (
     <svg
       width="101"
@@ -42,4 +43,8 @@ export const LogoTextComponent = () => {
       />
     </svg>
   );
+};
+
+export const LogoTextComponent = () => {
+  return <BrandLogo height={56} fallback={<UpstreamLogoText />} />;
 };

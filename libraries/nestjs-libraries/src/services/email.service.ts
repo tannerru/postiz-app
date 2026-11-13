@@ -1,3 +1,4 @@
+import { brandText } from '@gitroom/helpers/utils/brand';
 import { Injectable } from '@nestjs/common';
 import { EmailInterface } from '@gitroom/nestjs-libraries/emails/email.interface';
 import { ResendProvider } from '@gitroom/nestjs-libraries/emails/resend.provider';
@@ -74,6 +75,10 @@ export class EmailService {
       );
       return;
     }
+
+    // White-label: emails carry the brand name, not the upstream one
+    subject = brandText(subject);
+    html = brandText(html);
 
     const settingsUrl = `${process.env.FRONTEND_URL}/settings`;
     // Mail clients show an unsubscribe link next to the sender, it opens the

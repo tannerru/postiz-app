@@ -2,7 +2,8 @@ import { internalFetch } from '@gitroom/helpers/utils/internal.fetch';
 import { sanitizePostContent } from '@gitroom/helpers/utils/sanitize.post.content';
 export const dynamic = 'force-dynamic';
 import { Metadata } from 'next';
-import { isGeneralServerSide } from '@gitroom/helpers/utils/is.general.server.side';
+import { brandTitle } from '@gitroom/helpers/utils/is.general.server.side';
+import { getServerBrand } from '@gitroom/helpers/utils/brand';
 import SafeImage from '@gitroom/react/helpers/safe.image';
 import { PlatformIcon } from '@gitroom/frontend/components/ui/platform.icon.component';
 import Link from 'next/link';
@@ -19,7 +20,7 @@ import { CreationMethodBadge } from '@gitroom/frontend/components/launches/creat
 
 dayjs.extend(utc);
 export const metadata: Metadata = {
-  title: `${isGeneralServerSide() ? 'Postiz' : 'Gitroom'} Preview`,
+  title: `${brandTitle()} Preview`,
   description: '',
 };
 export default async function Auth(
@@ -48,6 +49,7 @@ export default async function Auth(
       </div>
     );
   }
+  const brand = getServerBrand();
   return (
     <PreviewCommentsProvider
       previewId={id}
@@ -60,6 +62,19 @@ export default async function Auth(
             href="/"
             className="flex items-center gap-[10px] text-textColor"
           >
+            {brand.whiteLabel ? (
+              <>
+                {!!brand.icon && (
+                  <img
+                    src={brand.icon}
+                    alt={brand.name}
+                    className="w-[44px] h-[44px] object-contain"
+                  />
+                )}
+                <div className="text-[20px] font-[600]">{brand.name}</div>
+              </>
+            ) : (
+              <>
             <div className="w-[44px]">
               <SafeImage src={'/postiz.svg'} width={44} height={44} alt="Logo" />
             </div>
@@ -89,6 +104,8 @@ export default async function Auth(
                         />
                       </svg>
             </div>
+              </>
+            )}
           </Link>
           <div className="flex-1" />
           <div className="flex items-center gap-[20px] text-[14px] text-textItemBlur">

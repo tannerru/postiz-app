@@ -7,6 +7,7 @@ import { useFetch } from '@gitroom/helpers/utils/custom.fetch';
 import { useT } from '@gitroom/react/translation/get.transation.service.client';
 import { PlatformIcon } from '@gitroom/frontend/components/ui/platform.icon.component';
 import { LogoTextComponent } from '@gitroom/frontend/components/ui/logo-text.component';
+import { BrandIcon } from '@gitroom/frontend/components/brand/brand.logo';
 
 interface ConnectLinkDetails {
   identifier: string;
@@ -35,7 +36,7 @@ const Wrapper: FC<{ children: ReactNode }> = ({ children }) => (
   <div className="flex flex-1 items-center justify-center text-white relative overflow-hidden">
     {/* Background gradient decoration */}
     <div className="absolute inset-0 opacity-30">
-      <div className="absolute top-[20%] left-[10%] w-[300px] h-[300px] bg-[#612BD3] rounded-full blur-[120px]" />
+      <div className="absolute top-[20%] left-[10%] w-[300px] h-[300px] bg-btnPrimary rounded-full blur-[120px]" />
       <div className="absolute bottom-[20%] right-[10%] w-[250px] h-[250px] bg-[#FC69FF] rounded-full blur-[120px]" />
     </div>
     {children}
@@ -99,7 +100,7 @@ export const ConnectLink: FC<{ token: string }> = ({ token }) => {
     return (
       <Wrapper>
         <div className="relative z-10 flex justify-center">
-          <div className="w-[48px] h-[48px] border-[3px] border-[#612BD3] border-t-transparent rounded-full animate-spin" />
+          <div className="w-[48px] h-[48px] border-[3px] border-btnPrimary border-t-transparent rounded-full animate-spin" />
         </div>
       </Wrapper>
     );
@@ -148,14 +149,19 @@ export const ConnectLink: FC<{ token: string }> = ({ token }) => {
       <div className="relative z-10 w-full max-w-[500px] mx-auto px-[20px] py-[40px]">
         <div className="bg-[#1A1919] rounded-[16px] overflow-hidden flex flex-col">
           <div className="relative h-[140px] bg-[#141313] overflow-hidden flex items-center justify-center gap-[14px]">
-            <div className="absolute -top-[70px] left-[5%] w-[260px] h-[200px] bg-[#612BD3] rounded-full blur-[60px] opacity-80" />
+            <div className="absolute -top-[70px] left-[5%] w-[260px] h-[200px] bg-btnPrimary rounded-full blur-[60px] opacity-80" />
             <div className="absolute -bottom-[90px] right-0 w-[240px] h-[200px] bg-[#FC69FF] rounded-full blur-[70px] opacity-60" />
             <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.22)_1px,transparent_1px)] bg-[length:7px_7px]" />
             <div className="relative w-[72px] h-[72px] rounded-[18px] bg-[#0B0A0A] border-[2px] border-white/20 shadow-[0_8px_24px_rgba(0,0,0,0.45)] flex items-center justify-center">
-              <img
-                src="/postiz.svg"
-                alt="Postiz"
-                className="w-[40px] h-[44px]"
+              <BrandIcon
+                size={44}
+                fallback={
+                  <img
+                    src="/postiz.svg"
+                    alt="Postiz"
+                    className="w-[40px] h-[44px]"
+                  />
+                }
               />
             </div>
             <div className="relative w-[36px] h-[36px] rounded-[10px] bg-[#1A1919] border border-[#2A2929] flex items-center justify-center">
@@ -257,7 +263,7 @@ export const ConnectLink: FC<{ token: string }> = ({ token }) => {
               <button
                 onClick={connect}
                 disabled={submitting}
-                className="bg-[#612BD3] hover:bg-[#7B3FF2] disabled:opacity-50 text-white rounded-[8px] py-[12px] px-[16px] text-[14px] font-semibold transition-colors"
+                className="bg-btnPrimary hover:bg-[#7B3FF2] disabled:opacity-50 text-white rounded-[8px] py-[12px] px-[16px] text-[14px] font-semibold transition-colors"
               >
                 {submitting
                   ? t('connect_link_connecting', 'Connecting...')

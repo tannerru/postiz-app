@@ -1,5 +1,6 @@
 'use client';
 
+import { getBrand } from '@gitroom/helpers/utils/brand';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useFetch } from '@gitroom/helpers/utils/custom.fetch';
 import Link from 'next/link';
@@ -224,6 +225,7 @@ export function RegisterAfter({
                   placeholder={t('label_company', 'Company')}
                 />
               </div>
+              {!getBrand().whiteLabel && (
               <div className={clsx('text-[12px]')}>
                 {t(
                   'by_registering_you_agree_to_our',
@@ -248,6 +250,7 @@ export function RegisterAfter({
                 </a>
                 &nbsp;
               </div>
+              )}
               <div className="text-center mt-6">
                 <div className="w-full flex">
                   <Button
