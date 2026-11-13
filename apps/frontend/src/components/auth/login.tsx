@@ -1,5 +1,6 @@
 'use client';
 
+import { getBrand } from '@gitroom/helpers/utils/brand';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { useFetch } from '@gitroom/helpers/utils/custom.fetch';
 import Link from 'next/link';
@@ -66,6 +67,8 @@ export function Login() {
       setLoading(false);
     }
   };
+  // White-label installs show only email sign-in unless BRAND_SOCIAL_LOGIN is set
+  const hideProviders = getBrand().whiteLabel && !getBrand().socialLogin;
   return (
     <FormProvider {...form}>
       <form className="flex-1 flex" onSubmit={form.handleSubmit(onSubmit)}>
@@ -75,11 +78,15 @@ export function Login() {
               {t('sign_in', 'Sign In')}
             </h1>
           </div>
-          <div className="text-[14px] mt-[32px] mb-[12px]">
-            {t('continue_with', 'Continue With')}
-          </div>
+          {hideProviders ? (
+            <div className="mt-[32px]" />
+          ) : (
+            <div className="text-[14px] mt-[32px] mb-[12px]">
+              {t('continue_with', 'Continue With')}
+            </div>
+          )}
           <div className="flex flex-col">
-            {isGeneral && genericOauth ? (
+            {hideProviders ? null : isGeneral && genericOauth ? (
               <OauthProvider />
             ) : !isGeneral ? (
               <GithubProvider />
@@ -91,7 +98,11 @@ export function Login() {
                 {billingEnabled && <WalletProvider />}
               </div>
             )}
-            <div className="h-[20px] mb-[24px] mt-[24px] relative">
+            <div
+              className={`h-[20px] mb-[24px] mt-[24px] relative ${
+                hideProviders ? 'hidden' : ''
+              }`}
+            >
               <div className="absolute w-full h-[1px] bg-fifth top-[50%] -translate-y-[50%]" />
               <div
                 className={`absolute z-[1] justify-center items-center w-full start-0 -top-[4px] flex`}

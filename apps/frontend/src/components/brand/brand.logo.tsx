@@ -16,7 +16,13 @@ export const BrandLogo: FC<{ fallback: ReactNode; height?: number }> = ({
     <img
       src={brand.logo}
       alt={brand.name}
-      style={{ height, width: 'auto', maxWidth: '100%' }}
+      style={{
+        height,
+        width: 'auto',
+        maxWidth: '100%',
+        objectFit: 'contain',
+        alignSelf: 'flex-start',
+      }}
     />
   );
 };

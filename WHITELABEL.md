@@ -18,6 +18,7 @@ All are read when the container starts. None are baked into the build.
 | `BRAND_COMPANY`, `BRAND_COMPANY_URL` | Company behind the install, linked under the sign-in form. |
 | `BRAND_SOURCE_URL` | Link to this install's source code, shown under the sign-in form. |
 | `BRAND_ACCENT`, `BRAND_ACCENT_TEXT` | Accent colour in dark mode and the text colour that sits on it (hex). |
+| `BRAND_SOCIAL_LOGIN` | Set to `true` to keep the third-party sign-in buttons (Google and so on). Hidden by default in white-label mode. |
 | `BRAND_ACCENT_LIGHT`, `BRAND_ACCENT_LIGHT_TEXT` | The same pair for light mode. Defaults to the dark pair. |
 
 Paths starting with `/brand/` are served from the `/brand` folder inside the container.
@@ -41,6 +42,7 @@ Mount your artwork there:
 - The name, logos, favicon and accent colour above.
 - The sign-in side panel shows the brand in place of Postiz testimonials.
 - The Postiz terms and privacy links are hidden on the register page.
+- Sign-in is email and password only, unless `BRAND_SOCIAL_LOGIN` is set.
 - The Mastodon app name registered for custom instances.
 
 Web addresses and package names stay as they are (`npm install -g postiz`, links to the

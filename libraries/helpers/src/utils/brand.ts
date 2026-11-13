@@ -25,6 +25,8 @@ export interface Brand {
   accentText: string;
   accentLight: string;
   accentLightText: string;
+  // Show the third-party sign-in buttons (Google and so on) on a white-label install
+  socialLogin: boolean;
 }
 
 const HEX = /^#[0-9a-fA-F]{3,8}$/;
@@ -50,6 +52,7 @@ export const getServerBrand = (): Brand => {
     accentText: color(process.env.BRAND_ACCENT_TEXT),
     accentLight: color(process.env.BRAND_ACCENT_LIGHT),
     accentLightText: color(process.env.BRAND_ACCENT_LIGHT_TEXT),
+    socialLogin: !!process.env.BRAND_SOCIAL_LOGIN,
   };
 };
 
